@@ -36,14 +36,14 @@ jobs:
 # Please note that the next line only works correctly with repositories that don't contain
 # upper case characters. If you have such a repo name please replace ${{ github.repository }}
 # with org/repo-name (all lower case).
-# E. g. ACDH-OEAW/OpenAtlas-Discovery -> acdh-oeaw/openatlas-discovery
+# E. g. simar0at/OpenAtlas-Discovery -> simar0at/openatlas-discovery
       registry_root: ghcr.io/${{ github.repository }}/
       default_port: "5000"
 # Usually you don't deal with all commits since the repository was created.
 # Increase if you e.g don't find a tag you want to display in the application
       fetch-depth: 10
       submodules: "true"
-#      herokuish_base_image: ghcr.io/acdh-oeaw/herokuish-for-cypress/main:latest-22
+#      herokuish_base_image: ghcr.io/simar0at/herokuish-for-cypress/main:latest-22
       APP_NAME: your-app-name
 # This together with the branch name is also used as the namespace to deploy to
       APP_ROOT: "/"     
@@ -85,7 +85,7 @@ jobs:
       PUBLIC_URL: ${{ steps.generate_public_url.outputs.public_url }}
   _1:
     needs: [setup_workflow_env, generate_workflow_vars]
-    uses:  acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/build-cnb-and-push-to-registry.yaml@main
+    uses:  simar0at/gl-autodevops-minimal-port/.github/workflows/build-cnb-and-push-to-registry.yaml@main
     secrets: inherit
 # if you run this outside of of an org that provides KUBE_CONFIG etc as a secret, you need to specify every secret you want to pass by name
     with:
@@ -99,9 +99,9 @@ jobs:
       submodules: ${{ needs.setup_workflow_env.outputs.submodules }}
   _2:
     needs: [setup_workflow_env, generate_workflow_vars]
-    uses:  acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/herokuish-tests-db-url.yaml@main
+    uses:  simar0at/gl-autodevops-minimal-port/.github/workflows/herokuish-tests-db-url.yaml@main
     secrets: inherit
-# if you run this outside of acdh-oeaw yo uneed to specify every secret you want to pass by name
+# if you run this outside of simar0at yo uneed to specify every secret you want to pass by name
     with:
       environment: ${{ needs.setup_workflow_env.outputs.environment}}
       registry_root: ${{ needs.setup_workflow_env.outputs.registry_root }}
@@ -114,9 +114,9 @@ jobs:
       submodules: ${{ needs.setup_workflow_env.outputs.submodules }}
   _3:
     needs: [setup_workflow_env, generate_workflow_vars, _1, _2]
-    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
+    uses: simar0at/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit
-# if you run this outside of acdh-oeaw yo uneed to specify every secret you want to pass by name
+# if you run this outside of simar0at yo uneed to specify every secret you want to pass by name
 #      KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 #      KUBE_INGRESS_BASE_DOMAIN: ${{ secrets.KUBE_INGRESS_BASE_DOMAIN }}
 #      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
