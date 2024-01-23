@@ -43,7 +43,7 @@ jobs:
 # Increase if you e.g don't find a tag you want to display in the application
       fetch-depth: 10
       submodules: "true"
-#      herokuish_base_image: ghcr.io/simar0at/herokuish-for-cypress/main:latest-22
+#      herokuish_base_image: ghcr.io/acdh-oeaw/herokuish-for-cypress/main:latest-22
       APP_NAME: your-app-name
 # This together with the branch name is also used as the namespace to deploy to
       APP_ROOT: "/"     
