@@ -16,7 +16,7 @@ jobs:
           image-names: "*"
           cut-off: A week ago UTC
           account-type: org
-          org-name: acdh-oeaw
+          org-name: simar0at
           keep-at-least: 1
           untagged-only: true
           token: ${{ secrets.PAT }}
@@ -27,7 +27,7 @@ jobs:
           image-names: "*"
           cut-off: One month ago UTC
           account-type: org
-          org-name: acdh-oeaw
+          org-name: simar0at
           keep-at-least: 1
           skip-tags: latest
           token: ${{ secrets.PAT }}
